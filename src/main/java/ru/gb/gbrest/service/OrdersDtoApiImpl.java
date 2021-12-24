@@ -26,4 +26,16 @@ public class OrdersDtoApiImpl {
         Class<List<OrdersDto>> listOrdersDtoClass = (Class<List<OrdersDto>>) listOrdersDto.getClass();
         return restTemplate.getForObject(URI.create(URL), listOrdersDtoClass);
     }
+
+    public OrdersDto create(OrdersDto ordersDto) {
+        return restTemplate.postForObject(URI.create(URL + "/create"), ordersDto, OrdersDto.class);
+    }
+
+    public void put(Long id, OrdersDto ordersDto) {
+        restTemplate.put(URI.create(URL + "/" + id), ordersDto);
+    }
+
+    public void del(Long id){
+        restTemplate.delete(URL + "/" + id);
+    }
 }
